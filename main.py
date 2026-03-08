@@ -1,5 +1,6 @@
 from constants import *
 from player import *
+from text import *
 from logger import log_state, log_event
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
@@ -33,6 +34,11 @@ def main():
     asteroidfield = AsteroidField()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    text_font = pygame.font.SysFont(None, 60, bold = True)
+    endgame_font = pygame.font.SysFont(None, 120, bold = True)
+    score = 0
+    game_over = False
+
 
     while True:
         log_state()
@@ -41,20 +47,27 @@ def main():
                 return
         screen.fill("black")
 
-        updatable.update(dt)
-        for asteroid in asteroids:
-            if asteroid.collides_with(player) == True:
-                log_event("player_hit")
-                print("Game over!")
+        if game_over == False:
+            draw_text(score_text(score), screen, text_font, "white", 1000, 100)
+            updatable.update(dt)
+            for asteroid in asteroids:
+                if asteroid.collides_with(player) == True:
+                    log_event("player_hit")
+                    print(final_score_text(score))
+                    game_over = True
+                    game_end_start = pygame.time.get_ticks()
+                for shot in shots:
+                    if asteroid.collides_with(shot):
+                        log_event("asteroid_shot")
+                        asteroid.split()
+                        shot.kill()
+                        score += 10
+            for object in drawable:
+                object.draw(screen)
+        else:
+            draw_text(final_score_text(score), screen, text_font, "white", 350, 320)
+            if pygame.time.get_ticks() - game_end_start > 15000:
                 sys.exit()
-            for shot in shots:
-                if asteroid.collides_with(shot):
-                    log_event("asteroid_shot")
-                    asteroid.split()
-                    shot.kill()
-        for object in drawable:
-            object.draw(screen)
-            
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
