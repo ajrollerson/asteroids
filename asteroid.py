@@ -1,8 +1,10 @@
-from circleshape import CircleShape
-from constants import LINE_WIDTH, ASTEROID_MIN_RADIUS
-from logger import log_event
 import pygame
 import random
+from circleshape import CircleShape
+from constants import LINE_WIDTH, ASTEROID_MIN_RADIUS, ORE_RADIUS
+from logger import log_event
+from soundeffects import boom_sound
+from ore import Ore
 
 
 class Asteroid(CircleShape):
@@ -17,14 +19,18 @@ class Asteroid(CircleShape):
 
     def split(self):
         self.kill()
+        boom_sound.play()
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
         log_event("asteroid_split")
         random_angle = random.uniform(20, 50)
         first_asteroid_velocity = self.velocity.rotate(random_angle)
         second_asteroid_velocity = self.velocity.rotate(-random_angle)
+        ore_velocity = self.velocity.rotate(random_angle)
         new_radius = self.radius - ASTEROID_MIN_RADIUS
         first_asteroid = Asteroid(self.position.x, self.position.y, new_radius)
         second_asteroid = Asteroid(self.position.x, self.position.y, new_radius)
+        ore = Ore(self.position.x, self.position.y, ORE_RADIUS)
         first_asteroid.velocity = first_asteroid_velocity * 1.2
         second_asteroid.velocity = second_asteroid_velocity * 1.2
+        ore.velocity = ore_velocity * 1.4
