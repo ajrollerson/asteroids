@@ -1,6 +1,4 @@
 import os
-os.environ["SDL_AUDIODRIVER"] = "dummy"
-print(os.getcwd())
 
 import pygame
 pygame.init()
@@ -66,18 +64,16 @@ def main():
                     print(final_score_text(score))
                     game_over = True
                     game_end_start = pygame.time.get_ticks()
-                    if score < 500:
-                        womp_womp_sound.play()
-                    elif 500 <= score < 1000:
-                        good_job_sound.play()
-                    elif 1000 <= score < 1500:
-                        warrior_sound.play()
-                    elif 1500 <= score < 2500:
-                        hero_sound.play()
-                    elif 1000 <= score < 2000:
-                        warrior_sound.play()
-                    elif score >= 5000:
-                        champion_sound.play()
+                    if score < 1000:
+                        play_sound(womp_womp_sound)
+                    elif 1000 <= score < 2500:
+                        play_sound(good_job_sound)
+                    elif 2500 <= score < 4000:
+                        play_sound(warrior_sound)
+                    elif 4000 <= score < 7500:
+                        play_sound(hero_sound)
+                    elif score >= 7500:
+                        play_sound(champion_sound)
                 for shot in shots:
                     if asteroid.collides_with(shot):
                         log_event("asteroid_shot")
@@ -87,9 +83,9 @@ def main():
             for ore in ores:
                 if ore.collides_with(player):
                     if ore.ore_type == "cool_crystal":
-                        player.player_shoot_cooldown_base -= 0.2
+                        player.player_shoot_cooldown_base -= 0.02
                     if ore.ore_type == "lasor_crystal":
-                        player.player_shot_speed += 50
+                        player.player_shoot_speed += 5
                     if ore.ore_type == "score":
                         score += 50
                     if ore.ore_type == "radioactive":
@@ -98,9 +94,9 @@ def main():
                 for shot in shots:
                     if ore.collides_with(shot):
                         if ore.ore_type == "cool_crystal":
-                            player.player_shoot_cooldown_base -= 0.2
+                            player.player_shoot_cooldown_base -= 0.02
                         if ore.ore_type == "lasor_crystal":
-                            player.player_shot_speed += 50
+                            player.player_shoot_speed += 5
                         if ore.ore_type == "score":
                             score += 50
                         if ore.ore_type == "radioactive":

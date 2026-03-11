@@ -3,7 +3,7 @@ from shot import Shot
 from circleshape import CircleShape
 from constants import *
 import constants
-from soundeffects import pew_sound
+from soundeffects import play_sound, pew_sound
 
 class Player(CircleShape):
     def __init__(self, x, y):
@@ -13,7 +13,7 @@ class Player(CircleShape):
         self.velocity = pygame.Vector2(0, 0)
         self.player_shoot_cooldown_base = constants.PLAYER_SHOOT_COOLDOWN_SECONDS
         self.player_shoot_cooldown = 0
-        self.player_shot_speed = constants.PLAYER_SHOOT_SPEED
+        self.player_shoot_speed = constants.PLAYER_SHOOT_SPEED
 
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
@@ -67,7 +67,8 @@ class Player(CircleShape):
     def shoot(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         bullet = Shot(self.position.x, self.position.y, SHOT_RADIUS)
-        bullet.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
+        bullet.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * self.player_shoot_speed
         bullet.position = self.position + forward * self.radius
-        pew_sound.play()
+        play_sound(pew_sound)
+        
     

@@ -3,7 +3,7 @@ import random
 from circleshape import CircleShape
 from constants import LINE_WIDTH, ASTEROID_MIN_RADIUS, ORE_RADIUS
 from logger import log_event
-from soundeffects import boom_sound
+from soundeffects import play_sound, boom_sound
 from ore import Ore
 
 
@@ -19,7 +19,7 @@ class Asteroid(CircleShape):
 
     def split(self):
         self.kill()
-        boom_sound.play()
+        play_sound(boom_sound)
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
         log_event("asteroid_split")
