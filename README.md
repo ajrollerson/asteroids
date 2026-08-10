@@ -1,62 +1,85 @@
-Asteroids.
+# Asteroids
+Asteroids is a Python game built with Pygame in which the player controls a spaceship while navigating and destroying spawning asteroids. The project began as a guided Boot.dev assignment before being extended with inertia-based movement, scoring, custom audio feedback, and additional gameplay mechanics.
 
-Asteroids is a small Python game featuring a player-controlled spaceship and numerous spawning objects such as ‘asteroids’, ‘ores’, and player shots. This guided project by boot.dev was designed to practise core software engineering skills, including object-oriented design, event-driven programming, and managing game state in Python using Pygame.
+## Technical Highlights
+- Object-oriented game architecture
+- Event-driven game-loop management
+- Frame-rate independent movement using delta time
+- Sprite-group-based object management
+- Stateful gameplay and scoring systems
+- Collision detection between game objects
 
-Key features:
+## Tech Stack
+- Python
+- Pygame
 
-The base project included:
+## Demo
+### Gameplay Demonstration
 
-•	Core game loop with delta time calculations for frame-rate independent movement, capped at 60 FPS to reduce CPU usage and maintain consistent game speed.
-•	Movement system using the w,s,d,a keys and space bar.
-•	Basic object interactions between the player’s shots and asteroids, as well as the player and asteroids.
-•	Object spawning and ‘destruction’.
+Gameplay demonstration showcasing player movement, shooting, asteroid destruction, ore collection, scoring, and the game-over state.
 
-Personal additions made that enhance the base project:
+![Gamplay demonstration](data/gameplay_demo.gif)
 
-•	Implemented a more realistic, inertia-based movement system, allowing the player to glide in short bursts, mimicking movement in space.
-•	Added a basic scoring system with an endgame screen to provide feedback on player performance.
-•	Created custom sound effects using Audacity for laser shots and asteroid destruction, with additional effects for score thresholds, enhancing engagement.
-•	Introduced additional ‘ores’ that spawn when asteroids are destroyed, providing buffs or extra score.
-•	Made aesthetic and colour improvements to enhance the visual experience.
+## Quick Start
+### Clone the Repository
+```bash
+git clone https://github.com/ajrollerson/asteroids.git
+cd asteroids
+```
 
-Installation instructions:
+### Activate the Virtual Environment
+```bash
+source .venv/bin/activate
+```
 
-This project is developed for Python 3.x using Pygame. It has been tested in Ubuntu on WSL and requires a virtual environment with Pygame installed. Running outside this environment may result in errors or missing functionality.
-
-1. Clone or download the ‘Asteroids’ repository from GitHub.
-
-2. Open a terminal in the top-level asteroids folder.
-
-3. Create and activate a virtual environment in the terminal.
-
-python3 -m venv venv
-source venv/bin/activate
-
-4. Install dependencies.
-
+### Install Dependencies
+```bash
 pip install -r requirements.txt
+```
 
-5. Run the game.
-
+### Start the Game
+```bash
 python3 main.py
+```
 
-6. To exit the virtual environment.
-
+### Deactivate the Virtual Environment
+```bash
 deactivate
+```
 
-Known issue:
+Note: this project has been developed for Python 3.x using Pygame. It has been tested in Ubuntu on WSL and requires a virtual environment with Pygame installed. Running outside this environment may result in errors or missing functionality.
 
-•	Rapidly firing or holding down the shoot key may cause some sound effects to stop playing permanently until the game is restarted. This is due to limitations in Pygame’s audio mixer and how it handles multiple overlapping sounds. Note: Playing single shots slowly will allow all sound effects to be heard correctly.
+## Key Features
+### Core Functionality
+- Run a frame-rate independent game loop capped at 60 FPS
+- Control the player using keyboard input
+- Detect collisions between the player, shots, and asteroids
+- Spawn and destroy game objects
 
-Design choices:
+### Independent Extensions
+- Implemented inertia-based player movement using velocity
+- Added scoring and an endgame state
+- Created custom sound effects and score-dependent audio feedback
+- Introduced ore objects providing score bonuses and player buffs
+- Improved visual presentation through custom colours and aesthetics
 
-•	Chose an inertia-based movement system for a more realistic and satisfying player experience.
-•	Implemented a scoring system and endgame screen to reward player performance.
-•	Custom sound effects and score-based audio feedback make gameplay more engaging.
-•	Added ‘ores’ that spawn from destroyed asteroids, giving buffs or additional score.
+## Design Choices
+### Inertia-based Movement System
+The original movement system was refactored to incorporate velocity, allowing the player to retain momentum briefly after directional input stops. This creates movement behaviour more appropriate to a spacecraft while requiring the game loop to update movement using frame-independent delta time.
 
-Future improvements:
+### Scoring System
+A scoring system was introduced to provide persistent feedback on player performance. The score is updated when asteroids are destroyed or ores are collected or shot, and is retained when the player enters the game-over state, allowing the final score to be displayed before the application exits.
 
-•	Considering finding a better way to implement sounds, to avoid the aforementioned issue with overlapping sounds.
-•	Improving the UI to provide better information to the player on what certain ‘ores’ buff and what the score thresholds are.
-•	May consider adding an ‘enemy’ spaceship for extra challenge.
+### Custom Sound Effects
+Custom voice recordings were created and modified using Audacity to provide audio feedback for gameplay events. Additional sounds were assigned to score thresholds, allowing the player's final performance to influence the audio feedback presented at the end of a game.
+
+### Ore-Based Gameplay Mechanics
+An ore system was introduced in which destroyed asteroids can spawn objects with different effects. Ores can modify player attributes such as shooting cooldown and projectile speed, or provide additional score when interacted with by the player or their shots, creating additional gameplay progression within each session.
+
+## Known Limitations
+- Rapidly firing or holding down the shoot key can cause some sound effects to stop playing until the game is restarted. This appears to occur when multiple sound effects overlap through Pygame's audio mixer. Playing single shots slowly will allow all sound effects to be heard correctly
+
+## Future Improvements
+- Improve audio handling to support overlapping sound effects reliably
+- Improve the UI to communicate ore effects and score thresholds
+- Introduce an enemy spaceship with additional combat behaviour
