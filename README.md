@@ -82,9 +82,8 @@ Custom voice recordings were created and modified using Audacity to provide audi
 An ore system was introduced in which destroyed asteroids can spawn objects with different effects. Ores can modify player attributes such as shooting cooldown and projectile speed, or provide additional score when interacted with by the player or their shots, creating additional gameplay progression within each session.
 
 ## Known Limitations
-- Rapidly firing or holding down the shoot key can cause some sound effects to stop playing until the game is restarted. This appears to occur when multiple sound effects overlap through Pygame's audio mixer. Playing single shots slowly will allow all sound effects to be heard correctly
+- Initially, rapidly firing or holding down the shoot key caused some sound effects to stop playing until the game was restarted. This appeared to occur when multiple sound effects overlapped through Pygame's audio mixer; however, the behaviour could not be reproduced in a clean virtual environment
 
 ## Future Improvements
-- Improve audio handling to support overlapping sound effects reliably
 - Improve the UI to communicate ore effects and score thresholds
 - Introduce an enemy spaceship with additional combat behaviour
