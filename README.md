@@ -27,6 +27,11 @@ git clone https://github.com/ajrollerson/asteroids.git
 cd asteroids
 ```
 
+### Create the Virtual Environment
+```bash
+python3 -m venv .venv
+```
+
 ### Activate the Virtual Environment
 ```bash
 source .venv/bin/activate
