@@ -21,6 +21,7 @@ Gameplay demonstration showcasing player movement, shooting, asteroid destructio
 ![Gamplay demonstration](data/gameplay_demo.gif)
 
 ## Quick Start
+The following commands assume a Bash/WSL environment.
 ### Clone the Repository
 ```bash
 git clone https://github.com/ajrollerson/asteroids.git
