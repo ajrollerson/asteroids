@@ -47,6 +47,19 @@ pip install -r requirements.txt
 ```bash
 python3 main.py
 ```
+### Play the game
+#### Controls
+- 'w' key - accelerate
+- 's' key - decelerate
+- 'a' key - turn left
+- 'd' key - turn right
+- 'space' key - shoot
+#### Scoring and Buffs
+- Destroy an asteroid - 10 points
+- Purple ore - reduces shoot cooldown
+- Red ore - increases fire rate
+- Blue ore - +50 points
+- Green ore - +100 points
 
 ### Deactivate the Virtual Environment
 ```bash
@@ -83,8 +96,9 @@ Custom voice recordings were created and modified using Audacity to provide audi
 An ore system was introduced in which destroyed asteroids can spawn objects with different effects. Ores can modify player attributes such as shooting cooldown and projectile speed, or provide additional score when interacted with by the player or their shots, creating additional gameplay progression within each session.
 
 ## Known Limitations
-- Initially, rapidly firing or holding down the shoot key caused some sound effects to stop playing until the game was restarted. This appeared to occur when multiple sound effects overlapped through Pygame's audio mixer; however, the behaviour could not be reproduced in a clean virtual environment
+- Rapidly firing or holding down the shoot key may cause some sound effects to stop playing permanently until the game is restarted. This appears to occur when multiple sound effects overlap through Pygame's audio mixer. Note: Playing single shots slowly will allow all sound effects to be heard correctly.
 
 ## Future Improvements
+- Find a better way to implement sound effects, to avoid the aforementioned issue with overlapping sounds.
 - Improve the UI to communicate ore effects and score thresholds
 - Introduce an enemy spaceship with additional combat behaviour
