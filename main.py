@@ -1,5 +1,3 @@
-import os
-
 import pygame
 pygame.init()
 pygame.mixer.init()
@@ -82,24 +80,24 @@ def main():
                         score += 10
             for ore in ores:
                 if ore.collides_with(player):
-                    if ore.ore_type == "cool_crystal":
+                    if ore.ore_type == "purple_ore":
                         player.player_shoot_cooldown_base -= 0.02
-                    if ore.ore_type == "lasor_crystal":
+                    if ore.ore_type == "red_ore":
                         player.player_shoot_speed += 5
-                    if ore.ore_type == "score":
+                    if ore.ore_type == "blue_ore":
                         score += 50
-                    if ore.ore_type == "radioactive":
+                    if ore.ore_type == "green_ore":
                         score += 100
                     ore.kill()
                 for shot in shots:
                     if ore.collides_with(shot):
-                        if ore.ore_type == "cool_crystal":
+                        if ore.ore_type == "purple_ore":
                             player.player_shoot_cooldown_base -= 0.02
-                        if ore.ore_type == "lasor_crystal":
+                        if ore.ore_type == "red_ore":
                             player.player_shoot_speed += 5
-                        if ore.ore_type == "score":
+                        if ore.ore_type == "blue_ore":
                             score += 50
-                        if ore.ore_type == "radioactive":
+                        if ore.ore_type == "green_ore":
                             score += 100
                         ore.kill()
             for object in drawable:

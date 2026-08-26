@@ -6,14 +6,14 @@ from constants import LINE_WIDTH
 class Ore(CircleShape):
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
-        self.ore_type = random.choice(["cool_crystal", "lasor_crystal", "score", "radioactive"])
-        if self.ore_type == "cool_crystal":
+        self.ore_type = random.choice(["purple_ore", "red_ore", "blue_ore", "green_ore"])
+        if self.ore_type == "purple_ore":
             self.colour = ("purple")
-        if self.ore_type == "lasor_crystal":
+        if self.ore_type == "red_ore":
             self.colour = ("red")
-        if self.ore_type == "score":
+        if self.ore_type == "blue_ore":
             self.colour = ("blue")
-        if self.ore_type == "radioactive":
+        if self.ore_type == "green_ore":
             self.colour = ("green")
 
     def draw(self, screen):
